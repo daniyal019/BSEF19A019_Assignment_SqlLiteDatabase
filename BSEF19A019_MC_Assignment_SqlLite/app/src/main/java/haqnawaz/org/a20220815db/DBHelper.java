@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 
@@ -49,6 +50,26 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(STUDENT_ENROLL, STUDENTModel.isEnroll());
         db.insert(STUDENT_TABLE, null, cv);
         db.close();
+        //NullCoumnHack
+        //long insert =
+        //if (insert == -1) { return false; }
+        //else{return true;}
+    }
+
+    public boolean deleteStudent(String id1,StudentModel STUDENTModel){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        //Hash map, as we did in bundles
+        ContentValues cv = new ContentValues();
+
+        cv.put(STUDENT_NAME, STUDENTModel.getName());
+        cv.put(STUDENT_ROLL, STUDENTModel.getRollNmber());
+        cv.put(STUDENT_ENROLL, STUDENTModel.isEnroll());
+
+        db.update(STUDENT_TABLE, cv, "StudentID = ?", new String[]{ id1 });
+
+        db.close();
+        return true;
         //NullCoumnHack
         //long insert =
         //if (insert == -1) { return false; }

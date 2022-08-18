@@ -15,18 +15,21 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonAdd, buttonViewAll;
-    EditText editName, editRollNumber;
+    Button buttonAdd, buttonViewAll,update;
+    EditText editName, editRollNumber,idget;
     Switch switchIsActive;
     ListView listViewStudent;
+    boolean isInserted=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         buttonAdd = findViewById(R.id.buttonAdd);
+        update= findViewById(R.id.update);
         buttonViewAll = findViewById(R.id.buttonViewAll);
         editName = findViewById(R.id.editTextName);
+        idget = findViewById(R.id.idget);
         editRollNumber = findViewById(R.id.editTextRollNumber);
         switchIsActive = findViewById(R.id.switchStudent);
         listViewStudent = findViewById(R.id.listViewStudent);
@@ -59,6 +62,28 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+       update.setOnClickListener(new View.OnClickListener() {
+           StudentModel studentModel;
+            @Override
+            public void onClick(View v) {
+        DBHelper dbHelper  = new DBHelper(MainActivity.this);
+
+                studentModel = new StudentModel(editName.getText().toString(), Integer.parseInt(editRollNumber.getText().toString()), switchIsActive.isChecked());
+
+                dbHelper.deleteStudent(idget.getText().toString(),studentModel);
+                if(isInserted==true)
+
+           {
+               Toast.makeText(MainActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+           }
+                else if((isInserted==false)){
+                    Toast.makeText(MainActivity.this, "Not Updated", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
     }
 }
