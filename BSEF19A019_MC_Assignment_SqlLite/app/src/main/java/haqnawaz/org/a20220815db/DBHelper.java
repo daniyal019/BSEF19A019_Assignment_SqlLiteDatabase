@@ -56,7 +56,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //else{return true;}
     }
 
-    public boolean deleteStudent(String id1,StudentModel STUDENTModel){
+    public boolean updateStudent(String id1,StudentModel STUDENTModel){
 
         SQLiteDatabase db = this.getWritableDatabase();
         //Hash map, as we did in bundles
@@ -74,6 +74,11 @@ public class DBHelper extends SQLiteOpenHelper {
         //long insert =
         //if (insert == -1) { return false; }
         //else{return true;}
+    }
+    public int deleteStudent(String id1){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.delete(STUDENT_TABLE,"StudentID = ?", new String[]{ id1 });
     }
 
     public ArrayList<StudentModel> getAllStudents() {
