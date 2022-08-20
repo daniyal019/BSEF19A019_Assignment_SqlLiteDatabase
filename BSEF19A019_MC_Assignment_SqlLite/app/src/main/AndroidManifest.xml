@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.20220815DB">
+        <activity
+            android:name=".Records"
+            android:exported="false"
+            android:label="@string/title_activity_records"
+            android:theme="@style/Theme.20220815DB.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
