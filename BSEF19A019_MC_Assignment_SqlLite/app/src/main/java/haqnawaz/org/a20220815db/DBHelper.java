@@ -40,7 +40,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void  addStudent(StudentModel STUDENTModel){
+    public Boolean addStudent(StudentModel STUDENTModel){
         SQLiteDatabase db = this.getWritableDatabase();
         //Hash map, as we did in bundles
         ContentValues cv = new ContentValues();
@@ -48,12 +48,13 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(STUDENT_NAME, STUDENTModel.getName());
         cv.put(STUDENT_ROLL, STUDENTModel.getRollNmber());
         cv.put(STUDENT_ENROLL, STUDENTModel.isEnroll());
-        db.insert(STUDENT_TABLE, null, cv);
+
+
+        long insert = db.insert(STUDENT_TABLE, null, cv);
         db.close();
-        //NullCoumnHack
-        //long insert =
-        //if (insert == -1) { return false; }
-        //else{return true;}
+        if (insert == -1) {
+            return false; }
+        else{return true;}
     }
 
     public boolean updateStudent(String id1,StudentModel STUDENTModel){
@@ -66,10 +67,14 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(STUDENT_ROLL, STUDENTModel.getRollNmber());
         cv.put(STUDENT_ENROLL, STUDENTModel.isEnroll());
 
-        db.update(STUDENT_TABLE, cv, "StudentID = ?", new String[]{ id1 });
-
+   int upd= db.update(STUDENT_TABLE, cv, "StudentID = ?", new String[]{ id1 });
         db.close();
-        return true;
+        if(upd>0)
+        {
+            return true;
+        }
+        else
+return false;
         //NullCoumnHack
         //long insert =
         //if (insert == -1) { return false; }

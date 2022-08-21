@@ -12,11 +12,10 @@
         android:id="@+id/idget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="60dp"
         android:hint="Id"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/buttonViewAll" />
 
@@ -50,35 +49,39 @@
         android:id="@+id/switchStudent"
         android:layout_width="151dp"
         android:layout_height="15dp"
-        android:layout_marginTop="77dp"
+        android:layout_marginTop="68dp"
         android:showText="true"
         android:text="@string/IsEnrolled"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonAdd"
-        app:layout_constraintTop_toTopOf="@+id/editTextName" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextRollNumber" />
 
     <Button
         android:id="@+id/buttonViewAll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="57dp"
         android:text="@string/ButtonViewAll"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="98dp" />
+        app:layout_constraintStart_toEndOf="@+id/switchStudent"
+        app:layout_constraintTop_toTopOf="@+id/editTextRollNumber" />
 
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="317dp"
+        android:layout_marginTop="57dp"
         android:text="@string/Add"
-        tools:layout_editor_absoluteX="231dp"
-        tools:layout_editor_absoluteY="98dp" />
+        app:layout_constraintStart_toStartOf="@+id/buttonViewAll"
+        app:layout_constraintTop_toTopOf="@+id/editTextRollNumber" />
 
     <Button
         android:id="@+id/update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="56dp"
         android:text="Update Record"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/idget" />
@@ -87,13 +90,11 @@
         android:id="@+id/delete"
         android:layout_width="137dp"
         android:layout_height="49dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="360dp"
+        android:layout_marginStart="308dp"
+        android:layout_marginTop="56dp"
         android:text="Delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.868"
-        app:layout_constraintStart_toEndOf="@+id/update"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAdd" />
+        app:layout_constraintStart_toStartOf="@+id/update"
+        app:layout_constraintTop_toTopOf="@+id/idget" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

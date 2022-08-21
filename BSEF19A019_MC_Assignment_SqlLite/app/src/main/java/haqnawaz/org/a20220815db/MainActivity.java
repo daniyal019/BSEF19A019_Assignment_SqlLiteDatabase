@@ -40,15 +40,25 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                DBHelper dbHelper  = new DBHelper(MainActivity.this);
                 try {
                     studentModel = new StudentModel(editName.getText().toString(), Integer.parseInt(editRollNumber.getText().toString()), switchIsActive.isChecked());
-                    //Toast.makeText(MainActivity.this, studentModel.toString(), Toast.LENGTH_SHORT).show();
+                    boolean add= dbHelper.addStudent(studentModel);
+                    if(add==true)
+                    {
+                        Toast.makeText(MainActivity.this, "Added", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this, "Not Added", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 catch (Exception e){
                     Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
-                DBHelper dbHelper  = new DBHelper(MainActivity.this);
-                dbHelper.addStudent(studentModel);
+
+
+
             }
         });
 
@@ -65,30 +75,55 @@ public class MainActivity extends AppCompatActivity {
            StudentModel studentModel;
             @Override
             public void onClick(View v) {
-        DBHelper dbHelper  = new DBHelper(MainActivity.this);
+                DBHelper dbHelper = new DBHelper(MainActivity.this);
+      try {
+          studentModel = new StudentModel(editName.getText().toString(), Integer.parseInt(editRollNumber.getText().toString()), switchIsActive.isChecked());
+          boolean upd= dbHelper.updateStudent(idget.getText().toString(), studentModel);
 
-                studentModel = new StudentModel(editName.getText().toString(), Integer.parseInt(editRollNumber.getText().toString()), switchIsActive.isChecked());
-
-              isInserted=  dbHelper.updateStudent(idget.getText().toString(),studentModel);
-                if(isInserted==true)
-
-           {
-               Toast.makeText(MainActivity.this, "Updated", Toast.LENGTH_SHORT).show();
-           }
-                else {
-                    Toast.makeText(MainActivity.this, "Not Updated", Toast.LENGTH_SHORT).show();
+          if(upd==true)
+          {
+              Toast.makeText(MainActivity.this, "Updated", Toast.LENGTH_SHORT).show();
+          }
+          else
+          {
+              Toast.makeText(MainActivity.this, "Not Updated", Toast.LENGTH_SHORT).show();
+          }
+      }
+      catch(Exception e)
+                {
+                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
+
             }
+
         });
 
        delete.setOnClickListener(new View.OnClickListener() {
             StudentModel studentModel;
             @Override
             public void onClick(View v) {
-                DBHelper dbHelper  = new DBHelper(MainActivity.this);
-               int del=dbHelper.deleteStudent(idget.getText().toString());
+                DBHelper dbHelper = new DBHelper(MainActivity.this);
+                try {
+
+                int del=dbHelper.deleteStudent(idget.getText().toString());
+                    if(del==1)
+                    {
+                        Toast.makeText(MainActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this, "Not Deleted", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch(Exception e)
+                {
+                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
+
+
         });
 
     }
